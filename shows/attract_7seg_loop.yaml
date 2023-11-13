@@ -1,0 +1,227 @@
+#show_version=5
+- duration: 3s
+  segment_displays:
+    neoSegPlayer1:
+      text: "HOT TIP"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer2:
+      text: "HOT TIP"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegPlayer3:
+      text: "HOT TIP"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer4:
+      text: "HOT TIP"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegcredit:
+      text: "{(machine.credit_units):>2,d}"      
+
+- duration: 3s
+  segment_displays:
+    neoSegPlayer1:
+      text: "Last"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer2:
+      text: "Game"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegPlayer3:
+      text: "Scores"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer4:
+      text: "<<<<<<"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegcredit:
+      text: "{(machine.credit_units):>2,d}"      
+
+# Show last game scores
+- duration: 4s
+  segment_displays:
+    neoSegPlayer1:
+      text: "{(machine.player1_score):>8,d}"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer2:
+      text: "{(machine.player2_score):>8,d}"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegPlayer3:
+      text: "{(machine.player3_score):>8,d}"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer4:
+      text: "{(machine.player4_score):>8,d}"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegcredit:
+      text: "{(machine.credit_units):>2,d}"      
+
+- duration: 3s
+  segment_displays:
+    neoSegPlayer1:
+      text: "Pinball"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer2:
+      text: "Powered"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegPlayer3:
+      text: "by"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer4:
+      text: "CobraPin"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegcredit:
+      text: "{(machine.credit_units):>2,d}"  
+          
+- duration: 3s
+  segment_displays:
+    neoSegPlayer1:
+      text: "Built"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer2:
+      text: "By"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegPlayer3:
+      text: "Todd"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer4:
+      text: "Legere"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegcredit:
+      text: "{(machine.credit_units):>2,d}"
+         
+- duration: 4s
+  segment_displays:
+    neoSegPlayer1:
+      text: "{(machine.score1_label)}"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer2:
+      text: "{(machine.score1_value)}"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "                      
+    neoSegPlayer3:
+      text: "{(machine.score2_label)}"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer4:
+      text: "{(machine.score2_value)}"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegcredit:
+      text: "{(machine.credit_units):>2,d}"      
+            
+- duration: 4s
+  segment_displays:
+    neoSegPlayer1:
+      text: "{(machine.score3_label)}"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer2:
+      text: "{(machine.score3_value)}"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegPlayer3:
+      text: "{(machine.score4_label)}"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer4:
+      text: "{(machine.score4_value)}"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegcredit:
+#      text: "{(machine.credits):>2,d}"
+      text: "{(machine.credit_units):>2,d}"      
+
+
+- duration: 4s
+  segment_displays:
+    neoSegPlayer1:
+      text: "{(machine.credits_string)}"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegPlayer2:
+      text: ""
+    neoSegPlayer3:
+      text: ""
+    neoSegPlayer4:
+      text: ""
+    neoSegcredit:
+      text: "{(machine.credit_units):>2,d}"      
+      
+
+               
+

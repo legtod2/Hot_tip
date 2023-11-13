@@ -1,0 +1,22 @@
+#config_version=5
+
+event_player:
+  mode_high_score_started: chime_gameover_show
+  
+high_score:
+  _overwrite: True
+  enter_initials_timeout: 60
+  categories:  !!omap
+  - score:
+    - HiScore
+    - 2ndPlace
+    - 3rdPlace
+    - 4thPlace
+    - 5thPlace
+  defaults:
+    score:
+      - 660000
+      - 240000
+      - 235000
+      - 200000
+      - 199000

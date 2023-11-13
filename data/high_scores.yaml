@@ -1,0 +1,16 @@
+score:
+- !!python/tuple
+  - AAA
+  - 205550
+- !!python/tuple
+  - AAA
+  - 165910
+- !!python/tuple
+  - AAA
+  - 136100
+- !!python/tuple
+  - AAA
+  - 134410
+- !!python/tuple
+  - AAA
+  - 130480

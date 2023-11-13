@@ -1,0 +1,28 @@
+#show_version=5
+- duration: 3s
+  segment_displays:
+    neoSegPlayer1:
+      text: "Shutdown"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer2:
+      text: "Shutdown"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+    neoSegPlayer3:
+      text: "Shutdown"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer4:
+      text: "Shutdown"
+      transition:
+        type: push
+        direction: right
+        text: " >>> "
+

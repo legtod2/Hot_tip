@@ -1,0 +1,53 @@
+#config_version=5
+mode:
+    code: bonus.Count
+    start_events: 
+      - ball_started
+      - ball_ending
+      - collectB                  #- sw_be_active{current_player.bonus>=11}
+    stop_events: 
+      - bonus_complete
+      - bonus_code_tilt_stop
+    use_wait_queue: true
+    priority: 105   #210   #105
+
+mode_settings:
+  keep_multiplier: True
+  display_delay_ms: 4s
+  bonus_entries:
+      - event: bonus_start
+        # score: 1000 * current_player.multiplier
+        player_score_entry: bonus
+        reset_player_score_entry: True
+
+sound_player:
+  bonus_code_step: 1000_pts
+  bonus_code_doublestep: 
+    1000_pts:
+      loops: 2
+      
+show_player:
+  bonus_code_doublestep:
+    chime_dblpts_show:
+      loops: 0
+  
+slide_player:
+  bonus_start: slide_6
+  bonus_subtotal: slide_9
+  bonus_multiplier: slide_10
+  bonus_total: slide_11
+slides:
+  slide_6:
+  - type: text
+    text: END OF BALL BONUS
+  slide_9:
+  - type: text
+    text: 'BONUS SCORE: (score)'
+    number_grouping: true
+  slide_10:
+  - type: text
+    text: (multiplier)X
+  slide_11:
+  - type: text
+    text: 'TOTAL BONUS: (score)'
+    number_grouping: true

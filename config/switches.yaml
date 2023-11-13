@@ -1,0 +1,234 @@
+#config_version=5
+# Restore switches s_outhole, s_start back to previous values
+switches:
+# Williams System 4 has dual wound coil using EOS switch 
+  s_flipper_right:
+    number: 1-0-1 
+    tags: player, high_score_right, right_flipper
+    label:
+  s_flipper_left:
+    number: 1-0-2
+    tags: player, high_score_left, left_flipper
+    label:
+# slingshots
+  s_lslingshot:
+    number: 1-0-3
+    label:
+    tags: slingshot
+  s_rslingshot:
+    number: 1-0-8
+    label:
+    tags: slingshot
+# Bumper    
+  s_cjet:
+    number: 1-0-9
+    label:
+    tags: jet
+
+# Service Switches
+  s_shutdown:
+    number: 0-0-16
+    tags: 
+#  s_service_enter:
+#    number: 0-0-17
+#    tags: service_enter
+#  s_service_esc:
+#    number: 0-0-18
+#    tags: service_esc
+#  s_service_up:
+#    number: 0-0-19
+#    tags: service_up
+#  s_service_down:
+#    number: 0-0-24
+#    tags: service_down
+#  s_hs_reset:
+#    number: 0-0-26
+    
+# Debounce the coin button better    
+  s_coin_btn:
+    number: 0-0-27
+    ignore_window_ms: 500
+# Matrix
+# Switch 9 Ball return
+  s_outhole:
+    number: 1-0-32
+    label:
+    tags: 
+# Switch 10 Tilt
+  s_plumb_bob:
+    number: 1-0-33
+    label:
+    tags: tilt_warning
+# Switch 11 Right outside special lane
+  s_right_outlane:
+    number: 1-0-34
+    label:
+    tags: playfield_active, outlane
+# Switch 12 Right inside lane
+  s_right_inlane:
+    number: 1-0-35
+    label:
+    tags: playfield_active
+# Switch 13 Right slingshot counter
+  s_rslingshotcntr:
+    number: 1-0-36
+    label:
+    tags: slingshot
+# Switch 14 Right standup switch 500 pts
+# Can ignore this switch we use events to control drop target back resets
+  s_rbstandup:
+    number: 1-0-37
+    tags:
+    label:
+# Switch 15 Captive ball switch 
+  s_capballswitch:
+    number: 1-0-38
+    tags: playfield_active
+    label:
+# Switch 16 Captive ball target value changes 1000 or 3000 use var bullseye_bonus when hit
+  s_capballtarget:
+    number: 1-0-39
+    tags: playfield_active
+    label:
+# Rightbank drop targets TIP letters (1-3)
+# Switch 17 Right Tip drop target
+  s_rbdrop1:
+    number: 1-0-40
+    tags:
+    label:
+# Switch 18 Center Tip drop target
+  s_rbdrop2:
+    number: 1-0-41
+    tags:
+    label:
+# Switch 19 Left Tip drop target
+  s_rbdrop3:
+    number: 1-0-42
+    tags:
+    label:
+# Switch 20 Top advance bonus target
+  s_topadvbonustarget:
+    number: 1-0-43
+    tags: playfield_active
+    label:       
+# Switch 21 Right top wall 10 pts
+  s_rtopwall:
+    number: 1-0-44
+    tags: playfield_active
+    label:   
+# Switch 22 Top outhole (Ball bounces in and out giving double points so ignore 2nd bounce switches)   
+  s_topouthole:
+    number: 1-0-45
+    tags: playfield_active
+    ignore_window_ms: 750
+    label:        
+# Switch 23 Left top wall 10 pts
+  s_ltopwall:
+    number: 1-0-46
+    tags: playfield_active
+    label:
+# Switch 24 Top of spinner lane roll over
+  s_ltopspinnerlane:
+    number: 1-0-47
+    tags: playfield_active
+    label:
+# Leftbank drop HOT letters targets (1-3)
+# Switch 25 Right Hot drop target
+  s_lbdrop1:
+    number: 1-0-48
+    tags:
+    label:
+# Switch 26 Center Hot drop target
+  s_lbdrop2:
+    number: 1-0-49
+    tags:
+    label:
+# Switch 27 Left Hot drop target
+  s_lbdrop3:
+    number: 1-0-50
+    tags:
+    label:   
+# Switch 28 Left middle wall 10 pts 
+  s_leftmiddlewall:
+    number: 1-0-51
+    tags: playfield_active
+    label:   
+# Switch 29 Left outhole (Ball bounces in and out giving double points so ignore 2nd bounce switches)
+  s_leftouthole:
+    number: 1-0-52
+    tags: playfield_active
+    ignore_window_ms: 750
+    label:   
+# Switch 30 Spinner   
+  s_spinner:
+    number: 1-0-53
+    label:
+# Switch 31 Center jet bumper counter
+  s_cjetcntr:
+    number: 1-0-54
+    label:
+    tags: jet
+# Switch 32 Left standup 500 pts this may be wrong
+  s_lstandup:
+    number: 1-0-55
+    label:
+# Switch 33 Left outside lane special when lite 1000 & gives extra ball
+  s_left_outlane:
+    number: 1-0-56
+    label:
+    tags: playfield_active, outlane   
+# Switch 34 Left inside lane  
+  s_left_inlane:
+    number: 1-0-57
+    label:
+    tags: playfield_active
+# Switch 35 Left sling shot counter 10 pts
+  s_lslingshotcntr:
+    number: 1-0-58
+    label:
+    tags: slingshot
+# Switch 37 Both drop target banks down
+  s_hottipseries:
+    number: 1-0-59
+    label:
+    tags:
+    
+# The values below are not defined in the switch matrix
+  s_ball_tilt:
+    number: 1-0-60
+    label:
+    tags: tilt_warning
+  s_start:
+    number: 1-0-61
+    label:
+    tags: start, player, high_score_select
+  s_right_coin:
+    number: 1-0-62
+    tags:
+    label:
+  s_center_coin:
+    number: 1-0-63
+    tags:
+    label:
+  s_left_coin:
+    number: 1-0-64
+    tags:
+    label:
+  s_slam_tilt:
+    number: 1-0-65
+    tags: 
+  s_highscore_reset:
+    number: 1-0-66
+    tags:
+    label:
+  s_playfieldtilt:
+    number: 1-0-67
+    tags:
+    label:
+
+
+
+
+
+
+

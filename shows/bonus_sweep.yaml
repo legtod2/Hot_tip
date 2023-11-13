@@ -1,0 +1,42 @@
+#show_version=5
+- duration: 1
+  lights:
+    l_bonus1: 0
+    l_bonus2: ff
+- duration: 1
+  lights:
+    l_bonus2: 0
+    l_bonus3: ff
+- duration: 1
+  lights:
+    l_bonus3: 0
+    l_bonus4: ff
+- duration: 1
+  lights:
+    l_bonus4: 0
+    l_bonus5: ff
+- duration: 1
+  lights:
+    l_bonus5: 0
+    l_bonus6: ff
+- duration: 1
+  lights:
+    l_bonus6: 0
+    l_bonus7: ff
+- duration: 1
+  lights:
+    l_bonus7: 0
+    l_bonus8: ff
+- duration: 1
+  lights:
+    l_bonus8: 0
+    l_bonus9: ff
+- duration: 1
+  lights:
+    l_bonus9: 0
+    l_bonus10: ff
+- duration: 1
+  lights:
+    l_bonus10: 0
+
+

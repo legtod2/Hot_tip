@@ -1,0 +1,35 @@
+#show_version=5
+- duration: 2s
+  segment_displays:
+    neoSegPlayer1:
+      text: "{(machine.credits_string)}"
+      transition:
+        type: split
+        mode: wipe
+        direction: out
+    neoSegPlayer2:
+      text: "{(machine.credits_string)}"
+      transition:
+        type: split
+        mode: wipe
+        direction: out
+    neoSegPlayer3:
+      text: "Insert"
+      transition:
+        type: split
+        mode: wipe
+        direction: out
+    neoSegPlayer4:
+      text: "Coins"
+      transition:
+        type: split
+        mode: wipe
+        direction: out
+
+    neoSegcredit:
+      text: "{(machine.credit_units)}"
+      transition:
+        type: split
+        mode: wipe
+        direction: out
+

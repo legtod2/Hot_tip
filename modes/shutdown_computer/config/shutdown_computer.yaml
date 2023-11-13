@@ -1,0 +1,40 @@
+#config_version=5
+# Pressing escape key or control c causes 'shutdown' event
+mode:
+  start_events: mode_tilt_started
+  stop_events: shutdown_mode_cancel
+  priority: 400
+  game_mode: False
+  code: shutdown_computer.shutdown_computer
+  
+timers:
+  shutdown_timer:
+    start_value: 5
+    end_value: 0
+    direction: down
+    control_events:
+      - action: start
+        event: s_shutdown_active
+
+event_player:
+  s_shutdown_active: 
+    - my_shutdown_show
+  timer_shutdown_timer_complete:
+    - my_shutdown_now
+  my_shutdown_now:
+    - shutdown_host_computer
+
+slides:
+  shutdown_slide:
+  - type: text
+    text: SHUTTING DOWN PC
+
+show_player:
+  s_shutdown_active:
+    attract_7seg_loop:
+      action: stop
+    my_shutdown_show:    
+      loops: 2
+      speed: 1
+      
+

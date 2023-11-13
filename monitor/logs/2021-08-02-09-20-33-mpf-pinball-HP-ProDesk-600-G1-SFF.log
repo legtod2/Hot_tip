@@ -1,0 +1,7 @@
+2021-08-02 09:20:33,749 : INFO : root : Loading config.
+2021-08-02 09:20:33,755 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2021-08-02 09:20:33,755 : DEBUG : ConfigProcessor : Cache file not found: /tmp/d371a64269aa3d387f72d5a778be9f84.mpf_cache
+2021-08-02 09:20:33,756 : INFO : ConfigProcessor : Loading config from file /usr/local/lib/python3.8/dist-packages/mpf/mpfconfig.yaml.
+2021-08-02 09:20:33,756 : DEBUG : YAML File Interface : Loading file: /usr/local/lib/python3.8/dist-packages/mpf/mpfconfig.yaml
+2021-08-02 09:20:33,808 : INFO : ConfigProcessor : Loading config: /usr/local/lib/python3.8/dist-packages/mpf/mpfconfig.yaml
+2021-08-02 09:20:33,809 : INFO : ConfigProcessor : Loading config from file /home/pinball/mpf/mpf-examples-dev/phoenix/monitor/config/config.yaml.

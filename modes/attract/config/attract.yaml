@@ -1,0 +1,38 @@
+#config_version=5
+show_player:
+  mode_attract_started:
+    attract_7seg_loop:
+      loops: -1
+      speed: 1
+  mode_attract_started.1: 
+    attract_light_show:
+      loops: -1
+      speed: 6 
+    tophole_sweep:
+      loops: -1
+      speed: 5
+    horse_sweep:
+      loops: -1
+      speed: 10
+    tip_sweep:
+      loops: -1
+      speed: 5
+    bonus_sweep:
+      loops: -1
+      speed: 10
+
+  mode_attract_stopped:
+    attract_7seg_loop:
+      action: stop
+  mode_attract_stopped.1: 
+    attract_light_show:
+      action: stop
+    tophole_sweep:
+      action: stop
+    bonus_sweep:
+      action: stop
+    tip_sweep:
+      action: stop
+    horse_sweep:
+      action: stop
+

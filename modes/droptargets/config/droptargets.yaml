@@ -1,0 +1,139 @@
+#config_version=5
+#Dropping all HOT & TIP drop targets 1st time
+#	Light horseshoe1 light
+#	Turns on double bonus light
+#	Raises value of drop targets from 10 pts to 100 pts each Turn on 100pts light (Left & right)
+#       Turns on Spinner 100pts value lamp
+#	Gives 5000pts reward
+#	Resets both droptarget banks to stand up
+#	
+#Dropping all HOT & TIP drop targets 2nd time
+#	Turns on Light horseshoe2 light
+#       Turn off 100 pts light & turn on 1000pts light
+#	Sets extraball light avail ball left eject hole
+#	Raises value of drop targets from 100 pts to 1000 pts each
+#	Gives 5000pts reward
+#	Resets both droptarget banks to stand up
+#
+#Dropping all HOT & TIP drop targets 3nd time
+#	Light horseshoe3 light
+#	Sets outlane special light avail 
+#	drop targets from 1000 pts each
+#	Gives 5000pts reward
+#	Resets both droptarget banks to stand up
+
+
+mode:
+  start_events: ball_started
+  priority: 110
+
+# Knock down all 3 left bank drop targets & 3 right bank drop targets 
+counters:
+# Left Bank counter
+  lb_DROP_complete_count:
+    count_events: DROP_lanes_complete
+    events_when_hit: DROP_lanes_done
+    starting_count: 0
+    direction: up
+    count_complete_value: 6
+    disable_on_complete: true
+    persist_state: false
+ 
+
+segment_display_player:
+  DROP_lanes_done: 
+    neoSegPlayer1:
+      text: "HOT TIP"
+      expire: 5s
+      transition:
+        type: push
+        direction: right
+        text: " *** "
+      transition_out:
+        type: push
+        direction: right
+        text: " *** "
+        
+slide_player:
+  RDROP_lanes_done: 
+    slide_10:
+      expire: 2s
+
+slides:
+  slide_10:
+  - type: text
+    text: (multiplier)X
+
+sound_player:
+# Replace these sound with something better
+  player_multiplier{value==2}: standup_hit_lit
+  player_multiplier{value==3}: standup_hit_lit
+
+shots:
+  left_drop1:
+    switch: s_lbdrop1
+  left_drop2:
+    switch: s_lbdrop2
+  left_drop3:
+    switch: s_lbdrop3
+  right_drop1:
+    switch: s_rbdrop1
+  right_drop2:
+    switch: s_rbdrop2
+  right_drop3:
+    switch: s_rbdrop3
+
+
+shot_groups:
+  DROP_lanes:
+    shots: left_drop1, left_drop2, left_drop3, right_drop1, right_drop2, right_drop3
+    reset_events: DROP_lanes_lit_complete
+#      DROP_lanes_lit_complete: 1s
+
+variable_player:
+# Both Banks drop targets
+  DROP_lanes_done{count==2}:
+    my_multiplier: 
+      int: 2
+      action: set 
+    drop_value: 
+      int: 100
+      action: set
+    spinner_value: 
+      int: 100
+      action: set
+  DROP_lanes_done{count==4}:
+    my_multiplier: 
+      int: 3
+      action: set 
+    drop_value: 
+      int: 1000
+      action: set
+    extraball_lamp_on:
+      int: 1
+      action: set
+  DROP_lanes_done{count==6}:
+    my_multiplier: 
+      int: 4
+      action: set 
+      
+  DROP_lanes_complete:
+    score: 2500
+
+show_player:
+  player_my_multiplier{value==2}:
+    playfield_light:
+      show_tokens:
+        lights: l_horseshoe1, l_dblbonus, l_spinner, l_hot100, l_tip100
+        color1: yellow
+  player_my_multiplier{value==3}:
+    playfield_light:
+      show_tokens:
+        lights: l_horseshoe1,l_horseshoe2, l_dblbonus, l_spinner, l_hot1000, l_tip1000, l_extraball
+        color1: yellow
+  player_my_multiplier{value==4}:
+    playfield_light:
+      show_tokens:
+        lights: l_horseshoe3, l_horseshoe1,l_horseshoe2, l_dblbonus, l_spinner, l_hot1000, l_tip1000, l_leftspecial, l_rightspecial
+        color1: yellow
+

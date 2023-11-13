@@ -1,0 +1,7 @@
+#show_version=5
+- time: 5ms
+  coils:
+    c_1000ptchime: pulse
+- time: 400ms
+  coils:
+    c_1000ptchime: pulse

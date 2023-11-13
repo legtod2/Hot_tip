@@ -1,0 +1,22 @@
+#show_version=5
+- duration: 2s
+  segment_displays:
+    neoSegPlayer3:
+      text: "Player"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+    neoSegPlayer4:
+      text: "Added"
+      transition:
+        type: push
+        text: " >>>"
+        direction: right
+    neoSegcredit:
+      text: "{(machine.credit_units):>2,d}"
+      transition:
+        type: push
+        text: " >>>"
+        direction: right
+

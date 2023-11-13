@@ -1,0 +1,11 @@
+#show_version=5
+- duration: 3s
+  segment_displays:
+    neoSegPlayer1:
+      text: "ExtraBal"
+      transition:
+        type: push
+        direction: left
+        text: " <<< "
+
+

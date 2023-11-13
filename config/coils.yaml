@@ -1,0 +1,182 @@
+#config_version=5
+# July 31, 2021 set default_pulse_ms: (5-7 = Weak pulse, 10 = Medium, 15 = strong)
+# Aug 31, Can't enable autofire flippers with EOS config
+# Bank C (1-0-n)
+autofire_coils:
+  center_jet:
+    coil: c_cjet
+    switch: s_cjet
+  left_slingshot:
+    coil: c_lslingshot
+    switch: s_lslingshot
+  right_slingshot:
+    coil: c_rslingshot
+    switch: s_rslingshot
+
+coils:
+# Non autofired coil 0-0-n
+# ---------------------------------------
+# Solenoid Bank A 0-0-8 to 0-0-14
+# ---------------------------------------
+# Outhole 
+  c_outhole:
+    number: 0-0-8
+    label:
+    tags:
+    default_pulse_ms: 15
+# Left Bank T.I.P. drop targets
+  c_lbdropreset1:
+    number: 0-0-9
+    label:
+    tags:
+    default_pulse_ms: 25
+# Right Bank H.O.T. drop targets
+  c_rbdropreset1:
+    number: 0-0-10
+    label:
+    tags:
+    default_pulse_ms: 25
+
+# Left Outhole 
+  c_louthole:
+    pulse_events: 
+     - timer_leftouthole_timer_complete
+     # Incase machine powered on and ball in outhole     
+     - init_done
+    number: 0-0-11
+    label:
+    tags:
+    default_pulse_ms: 15
+
+# Top Outhole 
+  c_touthole:
+    pulse_events: 
+     - timer_topouthole_timer_complete
+     # Incase machine powered on and ball in outhole
+     - init_done
+    number: 0-0-0
+    label:
+    tags:
+    default_pulse_ms: 15
+
+
+# Bank B
+# 10pt chime
+  c_10ptchime:
+    pulse_events: 
+      - s_ltopwall_active
+      - s_rtopwall_active
+      - s_leftmiddlewall_active
+      - s_lslingshot_active
+      - s_rslingshot_active
+      - s_spinner_active
+      - s_lstandup_active
+      - s_rbstandup_active
+    number: 0-0-7
+    label:
+    tags:
+    default_pulse_ms: 10
+
+# 100pt chime
+  c_100ptchime:
+    pulse_events: 
+      - s_capballswitch_active 
+    number: 0-0-6
+    label:
+    tags:
+    default_pulse_ms: 10
+
+# 1000pt chime
+  c_1000ptchime:
+    pulse_events: 
+      - s_left_inlane_active
+      - s_left_outlane_active
+      - s_right_inlane_active
+      - s_right_outlane_active
+      - s_topadvbonustarget_active
+      - bonus_code_step
+#      - s_capballtarget_active
+#      - bonus_code_doublestep
+    number: 0-0-5
+    label:
+    tags:
+    default_pulse_ms: 10
+
+# 10000pt chime
+  c_10000ptchime:
+    number: 0-0-4
+    label:
+    tags:
+    default_pulse_ms: 10    
+
+ # Knocker
+  c_knocker:
+    pulse_events: 
+      - replay
+      - extra_ball_score_one_awarded
+      - match_has_match
+    number: 0-0-15
+    label:
+    tags:
+    default_pulse_ms: 9   
+
+# See settings.replay_score in config.yaml, fire knocker if replay or extraball awarded or match awarded (Display credit_added slide)
+
+
+# ---------------------------------------    
+# Solenoid Bank B (Non Autofired Coils)
+# ---------------------------------------
+#  c_relay1:
+#    number: 0-0-15
+#    label:
+#    tags:
+#    default_hold_power: 1.0
+#  c_relay2:
+#    number: 0-0-7
+#    label:
+#    tags:
+#    default_hold_power: 1.0   
+
+
+# ---------------------------------------    
+# Solenoid Bank C Auto fired coils 1-0-n
+# 1-0-0 to 1-0-7
+# ---------------------------------------
+  c_flipper_left_main:
+    number: 1-0-0
+    default_pulse_ms: 7
+    allow_enable: true
+#    default_hold_power: 1.0
+# 1.0.7 Transistor burner out
+# Moved Right flipper to 1.0.3
+ 
+# Bumper
+  c_cjet:
+    number: 1-0-6
+    label:
+    tags:
+    default_pulse_ms: 15
+
+# Left slingshot 
+  c_lslingshot:
+    number: 1-0-5
+    default_pulse_ms: 7
+
+
+# Right slingshot
+  c_rslingshot:
+    number: 1-0-4
+    default_pulse_ms: 7
+
+# Right flipper transistor bad
+# ruined 1.0.7 & now 1.0.3
+# Wire disconnected
+  c_flipper_right_main:
+    number: 1-0-1
+    default_pulse_ms: 5
+    allow_enable: true
+#    default_hold_power: 1.0
+
+
+
+

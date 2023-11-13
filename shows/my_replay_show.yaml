@@ -1,0 +1,13 @@
+#show_version=5
+- duration: 3s
+  segment_displays:
+    neoSegPlayer1:
+      text: "REPLAY"
+      transition:
+        type: split
+        mode: wipe
+        direction: out
+    neoSegPlayer2:
+      text: ""
+
+

@@ -1,0 +1,143 @@
+#config_version=5
+
+lights:
+  l_shotagain:
+    number: 1-0-0
+    subtype: led
+    label:
+    tags: white
+  l_leftspecial:
+    number: 1-0-1
+    subtype: led
+    label:
+    tags: white
+  l_rightspecial:
+    number: 1-0-2
+    subtype: led
+    label:
+    tags: white
+  l_bonus1:
+    number: 1-0-3
+    label:
+    tags: white
+  l_bonus2:
+    number: 1-0-4
+    label:
+    tags: white
+  l_bonus3:
+    number: 1-0-5
+    label:
+    tags: white
+  l_bonus4:
+    number: 1-0-6
+    label:
+    tags: white
+  l_bonus5:
+    number: 1-0-7
+    label:
+    tags: white
+  l_bonus6:
+    number: 1-0-8
+    label:
+    tags: white
+  l_bonus7:
+    number: 1-0-9
+    label:
+    tags: white
+  l_bonus8:
+    number: 1-0-10
+    label:
+    tags: white
+  l_bonus9:
+    number: 1-0-11
+    label:
+    tags: white
+  l_bonus10:
+    number: 1-0-12
+    label:
+    tags: white
+  l_dblbonus:
+    number: 1-0-13
+    subtype: led
+    label:
+    tags: white
+  l_horseshoe2:
+    number: 1-0-14
+    subtype: led
+    label:
+    tags: white
+  l_horseshoe1:
+    number: 1-0-15
+    subtype: led
+    label:
+    tags: white
+  l_horseshoe3:
+    number: 1-0-16
+    subtype: led
+    label:
+    tags: white
+  l_capball3000:
+    number: 1-0-17
+    subtype: led
+    label:
+    tags: white
+  l_spinner:
+    number: 1-0-18
+    subtype: led
+    label:
+    tags: white
+  l_extraball:
+    number: 1-0-19
+    subtype: led
+    label:
+    tags: white
+  l_hot1000:
+    number: 1-0-20
+    subtype: led
+    label:
+    tags: white
+  l_hot100:
+    number: 1-0-21
+    subtype: led
+    label:
+    tags: white
+  l_tip1000:
+    number: 1-0-22
+    subtype: led
+    label:
+    tags: white
+  l_tip100:
+    number: 1-0-23
+    subtype: led
+    label:
+    tags: white
+  l_eject1000:
+    number: 1-0-24
+    label:
+    tags: white
+  l_ejectcapball:
+    number: 1-0-25
+    subtype: led
+    label:
+    tags: white
+  l_1eject500:
+    number: 1-0-28
+    label:
+    tags: white
+  l_ejectdblbonus:
+    number: 1-0-27
+    label:
+    tags: white
+  l_2eject500:
+    number: 1-0-26
+    label:
+    tags: white
+  l_credits:
+    number: 1-0-29
+    label:
+    tags: white
+  l_bonus20:
+    number: 1-0-30
+    label:
+    tags: white
+

@@ -1,0 +1,24 @@
+#show_version=5
+- duration: 1
+  lights:
+    l_1eject500: ff
+- duration: 1
+  lights:
+    l_ejectdblbonus: ff
+    l_1eject500: 0
+- duration: 1
+  lights:
+    l_2eject500: ff
+    l_ejectdblbonus: 0  
+- duration: 1
+  lights:
+    l_ejectcapball: ff
+    l_2eject500: 0
+- duration: 1
+  lights:
+    l_eject1000: ff
+    l_ejectcapball: 0
+- duration: 1
+  lights:
+    l_eject1000: 0
+

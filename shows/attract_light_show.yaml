@@ -1,0 +1,32 @@
+#show_version=5
+- duration: 1
+  lights:
+    l_capball3000: 0
+    l_horseshoe3: 0
+    l_rightspecial: ff    
+- duration: 1
+  lights:
+    l_rightspecial: 0
+    l_capball3000: ff    
+- duration: 1
+  lights:
+    l_capball3000: 0 
+    l_extraball: ff  
+- duration: 1
+  lights:
+    l_extraball: 0
+    l_spinner: ff
+- duration: 1
+  lights:
+    l_spinner: 0
+    l_leftspecial: ff
+    l_rightspecial: ff
+- duration: 1
+  lights:
+    l_leftspecial: 0
+    l_rightspecial: 0
+    l_shotagain: ff
+- duration: 1
+  lights:
+    l_shotagain: 0
+

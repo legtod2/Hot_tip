@@ -1,0 +1,16 @@
+#show_version=5
+- duration: 1
+  lights:
+    l_hot1000: ff
+    l_tip1000: ff
+- duration: 1
+  lights:
+    l_hot1000: 0
+    l_tip1000: 0
+    l_hot100: ff
+    l_tip100: ff
+- duration: 1
+  lights:
+    l_hot100: 0
+    l_tip100: 0   
+

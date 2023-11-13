@@ -1,0 +1,56 @@
+#config_version=5
+mode:
+  start_events: ball_starting
+  priority: 100
+
+ 
+show_player:
+  logicblock_tophole_count_updated{value==1}:
+    outhole_lamps:
+      show_tokens:
+        led: l_1eject500
+        color1: white
+  logicblock_tophole_count_updated{value==2}:
+    outhole_lamps:
+      show_tokens:
+        led: l_ejectdblbonus
+        color1: white
+  logicblock_tophole_count_updated{value==3}:
+    outhole_lamps:
+      show_tokens:
+        led: l_2eject500
+        color1: white
+  logicblock_tophole_count_updated{value==4}:
+    outhole_lamps:
+      show_tokens:
+        led: l_ejectcapball
+        color1: white
+  logicblock_tophole_count_updated{value==5}:
+    outhole_lamps:
+      show_tokens:
+        led: l_eject1000
+        color1: white
+  player_my_capball_awarded{value>0}:
+    cap_lamps:
+      show_tokens:
+        led: l_capball3000
+        color1: yellow
+  player_my_dblbonus_awarded{value>0}:
+    dbl_lamps:
+      show_tokens:
+        led: l_dblbonus
+        color1: yellow
+
+shows:
+  outhole_lamps:
+    - duration: -1
+      lights: (led)
+  cap_lamps:
+    - duration: -1
+      lights: (led)
+  dbl_lamps:
+    - duration: -1
+      lights: (led)
+
+
+

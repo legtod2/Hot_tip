@@ -1,0 +1,872 @@
+#config_version=5
+# Last Update Sept 26, 2021: Fix extraball, show which player# up in DMD and music before plunge ball
+# There is no multiplier only double bonus 2 x 1000 pts on bonus collection
+# Bonus count when ball in outhole is 19 max 
+
+mode:
+  start_events: ball_starting
+  priority: 100
+      
+event_player:
+  player_tilt_warnings{value==3}: my_game_tilted
+  multiplayer_game: player_1_multiplayer_slide
+  s_hs_reset_active: high_score_reset
+  player_1_ball_started: player_1_multiplayer_slide
+#  player_my_extraball_awarded{value==1}:
+#    - my_extraball
+  player_score{value>=settings.replay_score and current_player.replay_level_1==0}:
+    - replay
+    - my_replay
+  s_lbdstandup_active:
+    - pulse_lb_reset1
+  s_rbdstandup_active:
+    - pulse_rb_reset1
+  timer_topouthole_timer_complete:
+    my_topouthole_timer_reset
+  timer_leftouthole_timer_complete:
+    my_leftouthole_timer_reset
+        
+timers:
+  topouthole_timer:
+    start_value: 2
+    end_value: 0
+    direction: down
+    control_events:
+      - action: start
+        event: s_topouthole_active
+      - action: reset
+        event: my_topouthole_timer_reset        
+  leftouthole_timer:
+    start_value: 2
+    end_value: 0
+    direction: down
+    control_events:
+      - action: start
+        event: s_leftouthole_active
+      - action: reset
+        event: my_leftouthole_timer_reset
+                
+counters:
+# Top hole lites
+  tophole_count:
+    count_events: s_ltopwall_active, s_rtopwall_active, s_lslingshot_active, s_rslingshot_active, s_leftmiddlewall_active, s_ltopspinnerlane_active
+    starting_count: 1
+    direction: up
+    count_complete_value: 6
+    disable_on_complete: false
+    persist_state: false   
+    
+slide_player:
+  replay: 
+    slide_replay:
+      expire: 2s
+  single_player_ball_started: slide_1
+  player_1_multiplayer_slide: slide_2
+  player_2_ball_started: slide_3
+  player_3_ball_started: slide_4
+  player_4_ball_started: slide_5
+
+sound_player:
+# When mode begins endless loop in background into music
+  mode_base_started:
+    spoons_beat:
+      loops: -1
+# Turn off intro music when first switch hit and launch some other backgound music maybe
+  s_rtopwall_active:
+    spoons_beat:
+      action: stop
+  s_ltopwall_active:
+    spoons_beat:
+      action: stop
+  s_cjet_active:
+    spoons_beat:
+      action: stop
+
+#    base_background_music:
+#    spoons_beat:
+#      loops: -1
+#  s_outhole_active:
+#    base_background_music:
+#    spoons_beat:
+#      action: stop
+  s_topadvbonustarget_active: 1000_pts
+  s_leftmiddlewall_active: 10_pts
+  s_capballswitch_active: 100_pts
+  play_1000_pts: 1000_pts
+  s_leftouthole_active: bulls_eye_pool
+  s_ltarget_active: GoPostal
+  s_rtarget_active: come_on
+  s_spinner_active: 10_pts
+  s_wall1_active: 10_pts
+  s_wall2_active: 10_pts
+  s_wall3_active: 10_pts
+  s_wall4_active: 10_pts
+  s_lbdrop1_active: 10_pts
+  s_lbdrop2_active: 10_pts
+  s_lbdrop3_active: 10_pts
+  s_rbdrop1_active: 10_pts
+  s_rbdrop2_active: 10_pts
+  s_rbdrop3_active: 10_pts          
+  s_lslingshot_active: 10_pts
+  s_rslingshot_active: 10_pts
+  s_left_inlane_active: 1000_pts
+  s_right_inlane_active: 1000_pts
+  s_left_outlane_active: doh
+  s_right_outlane_active: doh
+  s_right_coin_active: payback_time
+  s_coin_btn_active: payback_time
+  s_start_active: YourFucked
+
+# Award extraball when my_extraball_awarded>1 and left outhole active
+# Award extraball when special lite on and left or right outlane active
+# Limit play to only 2 extraballs per game
+extra_balls:
+  score_one:
+    enabled: true
+    award_events: player_my_extraball_awarded{value==1}
+    max_per_game: 1
+  score_two:
+    enabled: true
+    award_events: player_my_extraball_awarded{value==2}
+    max_per_game: 1
+
+shows:
+  ball_display:
+    - duration: -1
+      segment_displays:
+        neoSegball:
+          text: (txt)
+
+  credit_display:
+    - duration: -1
+      segment_displays:
+        neoSegcredit:
+          text: (txt)
+
+  P1_score:
+    - duration: -1
+      segment_displays:
+        neoSegPlayer1:
+          text: (txt)
+  P2_score:
+    - duration: -1
+      segment_displays:
+        neoSegPlayer2:
+          text: (txt)
+
+  P3_score:
+    - duration: -1
+      segment_displays:
+        neoSegPlayer3:
+          text: (txt)
+
+  P4_score:
+    - duration: -1
+      segment_displays:
+        neoSegPlayer4:
+          text: (txt)
+
+  P1_scoreFlash:
+    - duration: 4s
+      segment_displays:
+        neoSegPlayer1:
+          text: (txt)
+          transition:
+            type: push
+            direction: right
+            text: ">>>"
+
+  P2_scoreFlash:
+    - duration: 4s
+      segment_displays:
+        neoSegPlayer2:
+          text: (txt)
+          transition:
+            type: push
+            direction: right
+            text: ">>>"
+
+  P3_scoreFlash:
+    - duration: 4s
+      segment_displays:
+        neoSegPlayer3:
+          text: (txt)
+          transition:
+            type: push
+            direction: right
+            text: ">>>"
+
+  P4_scoreFlash:
+    - duration: 4s
+      segment_displays:
+        neoSegPlayer4:
+          text: (txt)
+          transition:
+            type: push
+            direction: right
+            text: ">>>"
+
+  outhole_lamps:
+    - duration: -1
+      lights: (led)
+  cap_lamps:
+    - duration: -1
+      lights: (led)
+  dbl_lamps:
+    - duration: -1
+      lights: (led)
+
+            
+show_player:  
+  s_topouthole_active{current_player.eject1000_lamp_on==0}:
+    chime_500pts_show:
+      loops: 0
+
+  s_topouthole_active{current_player.eject1000_lamp_on==1}:
+    chime_1000pts_show:
+      loops: 0
+
+  s_capballtarget_active{current_player.my_capball_awarded>0}:
+    chime_3000pts_show:
+      loops: 0
+
+  s_capballtarget_active{current_player.my_capball_awarded==0}:
+    chime_1000pts_show:
+      loops: 0
+                        
+  s_leftouthole_active:
+    chime_500pts_show:
+      loops: 0
+               
+  my_replay:
+    p1score: stop
+    my_replay_show:
+      loops: 2
+      speed: 1
+
+  extra_ball_awarded:
+    p1score: stop
+    my_extraball_show:
+      loops: 2
+      speed: 1
+        
+  single_player_ball_started:
+    credit_display:
+      show_tokens:
+        txt: "{(machine.credit_units):>2,d}"
+    ball_display:
+      show_tokens:
+        txt: "{(players[0].ball):>2,d}"
+    P2_score:
+      show_tokens:
+        txt: "{(players[1].score):>8,d}"
+    P3_score:
+      show_tokens:
+        txt: "{(players[2].score):>8,d}"
+    P4_score:
+      show_tokens:
+        txt: "{(players[3].score):>8,d}"  
+    P1_scoreFlash:
+      show_tokens:
+        txt: "{(players[0].score):>8,d}"
+      key: scoreFlash
+      
+  single_player_ball_started.1: 
+    chime_test_show:
+      loops: 0
+  
+  player_1_ball_started:
+    credit_display:
+      show_tokens:
+        txt: "{(machine.credit_units):>2,d}"  
+    ball_display:
+      show_tokens:
+        txt: "{(players[0].ball):>2,d}" 
+    P2_score:
+      show_tokens:
+        txt: "{(players[1].score):>8,d}"
+    P3_score:
+      show_tokens:
+        txt: "{(players[2].score):>8,d}"
+    P4_score:
+      show_tokens:
+        txt: "{(players[3].score):>8,d}"
+    P1_scoreFlash:
+      show_tokens:
+        txt: "{(players[0].score):>8,d}"
+      key: scoreFlash
+
+  player_2_ball_started:
+    credit_display:
+      show_tokens:
+        txt: "{(machine.credit_units):>2,d}"    
+    ball_display:
+      show_tokens:
+        txt: "{(players[1].ball):>2,d}"  
+    P1_score:
+      show_tokens:
+        txt: "{(players[0].score):>8,d}"
+    P3_score:
+      show_tokens:
+        txt: "{(players[2].score):>8,d}"
+    P4_score:
+      show_tokens:
+        txt: "{(players[3].score):>8,d}"
+    P2_scoreFlash:
+      show_tokens:
+        txt: "{(players[1].score):>8,d}"
+      key: scoreFlash
+
+  player_3_ball_started:
+    ball_display:
+      show_tokens:
+        txt: "{(players[2].ball):>2,d}"
+    P1_score:
+      show_tokens:
+        txt: "{(players[0].score):>8,d}"
+    P2_score:
+      show_tokens:
+        txt: "{(players[1].score):>8,d}"
+    P4_score:
+      show_tokens:
+        txt: "{(players[3].score):>8,d}"
+    P3_scoreFlash:
+      show_tokens:
+        txt: "{(players[2].score):>8,d}"
+      key: scoreFlash
+
+  player_4_ball_started:
+    ball_display:
+      show_tokens:
+        txt: "{(players[3].ball):>2,d}"
+    P1_score:
+      show_tokens:
+        txt: "{(players[0].score):>8,d}"
+    P2_score:
+      show_tokens:
+        txt: "{(players[1].score):>8,d}"
+    P3_score:
+      show_tokens:
+        txt: "{(players[2].score):>8,d}"
+    P4_scoreFlash:
+      show_tokens:
+        txt: "{(players[3].score):>8,d}"
+      key: scoreFlash
+
+  player_score{player_num==1 and value>0}:
+    scoreFlash: stop
+    P1_score:
+      show_tokens:
+        txt: "{(players[0].score):>8,d}"
+      key: p1score
+
+  player_score{player_num==2 and value>0}:
+    scoreFlash: stop
+    P2_score:
+      show_tokens:
+        txt: "{(players[1].score):>8,d}"
+      key: p1score
+  player_score{player_num==3 and value>0}:
+    scoreFlash: stop
+    P3_score:
+      show_tokens:
+        txt: "{(players[2].score):>8,d}"
+      key: p1score
+  player_score{player_num==4 and value>0}:
+    scoreFlash: stop
+    P4_score:
+      show_tokens:
+        txt: "{(players[3].score):>8,d}"
+      key: p1score
+
+  player_my_extraball_awarded{value>0}:
+    playfield_light:
+      show_tokens:
+        lights: l_shotagain
+        color1: white 
+  player_bonus{value==10}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus10
+        color1: white
+  player_bonus{value==1}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus1 
+        color1: white
+  player_bonus{value==11}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus1, l_bonus10
+        color1: white
+  player_bonus{value==2}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus2
+        color1: white
+  player_bonus{value==12}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus2, l_bonus10
+        color1: white
+  player_bonus{value==3}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus3
+        color1: white
+  player_bonus{value==13}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus3, l_bonus10
+        color1: white
+  player_bonus{value==4}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus4
+        color1: white
+  player_bonus{value==14}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus4, l_bonus10
+        color1: white
+  player_bonus{value==5}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus5
+        color1: white
+  player_bonus{value==15}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus5, l_bonus10
+        color1: white
+  player_bonus{value==6}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus6
+        color1: white
+  player_bonus{value==16}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus10
+        color1: white
+  player_bonus{value==7}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus7
+        color1: white
+  player_bonus{value==17}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus7, l_bonus10
+        color1: white
+  player_bonus{value==8}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus8
+        color1: white
+  player_bonus{value==18}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus8, l_bonus10
+        color1: white
+  player_bonus{value==9}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus9
+        color1: white
+  player_bonus{value==19}:
+    playfield_light:
+      show_tokens:
+        lights: l_bonus9, l_bonus10
+        color1: white
+  logicblock_tophole_count_updated{value==1}:
+    outhole_lamps:
+      show_tokens:
+        led: l_1eject500
+        color1: white
+  logicblock_tophole_count_updated{value==2}:
+    outhole_lamps:
+      show_tokens:
+        led: l_ejectdblbonus
+        color1: white
+  logicblock_tophole_count_updated{value==3}:
+    outhole_lamps:
+      show_tokens:
+        led: l_2eject500
+        color1: white
+  logicblock_tophole_count_updated{value==4}:
+    outhole_lamps:
+      show_tokens:
+        led: l_ejectcapball
+        color1: white
+  logicblock_tophole_count_updated{value==5}:
+    outhole_lamps:
+      show_tokens:
+        led: l_eject1000
+        color1: white
+  player_my_capball_awarded{value>0}:
+    cap_lamps:
+      show_tokens:
+        led: l_capball3000
+        color1: yellow
+  player_my_dblbonus_awarded{value>0}:
+    dbl_lamps:
+      show_tokens:
+        led: l_dblbonus
+        color1: yellow
+
+variable_player:
+# This is used by the chime_500pts_show
+  add100pts:
+    score: 100
+# This is used by the chime_1000pts_show
+  add1000pts:
+    score: 1000    
+# Was Game tilted
+  my_game_tilted:
+    my_tilted:
+      int: 1
+      action: set 
+# After replay awarded stop awarding again for every extra point.
+  replay:
+    replay_level_1:
+      int: 1
+      action: set
+  mode_base_started:
+    my_dblbonus_awarded:
+      int: 0
+      action: set 
+    my_capball_awarded:
+      int: 0
+      action: set 
+    double_lamp_on:
+      int: 0
+      action: set 
+    captive_lamp_on:
+      int: 0
+      action: set 
+      
+# My tilt variable
+    my_tilted:
+      int: 0
+      action: set
+# Reset Extra ball awarded to 0
+    my_extraball_awarded:
+      int: 0
+      action: set
+
+# Initialize spinner starting value to 10
+    spinner_value:
+      int: 10
+      action: set
+# Initialize drop target value to 10
+    drop_value:
+      int: 10
+      action: set
+# See multiplier & my_multiplier in droptargets.yaml
+    multiplier:
+      int: 1
+      action: set
+    my_multiplier:
+      int: 1
+      action: set
+    extraball_lamp_on:
+      int: 0
+      action: set
+    spinner_lamp_on:
+      int: 0
+      action: set
+    eject1000_lamp_on:
+      int: 0
+      action: set
+
+# This needs to alternate light on top outhole and change top outhole value  
+  logicblock_tophole_count_updated{value==1}: 
+    eject1000_lamp_on:
+      int: 0
+      action: set  
+  logicblock_tophole_count_updated{value==2}: 
+    double_lamp_on:
+      int: 1
+      action: set  
+  logicblock_tophole_count_updated{value==3}: 
+    double_lamp_on:
+      int: 0
+      action: set  
+  logicblock_tophole_count_updated{value==4}: 
+    captive_lamp_on:
+      int: 1
+      action: set  
+  logicblock_tophole_count_updated{value==5}: 
+    eject1000_lamp_on:
+      int: 1
+      action: set  
+    captive_lamp_on:
+      int: 0
+      action: set  
+      
+  s_ltopwall_active:
+    score: 10 * current_player.multiplier
+  s_rtopwall_active:
+    score: 10 * current_player.multiplier
+  s_ltopspinnerlane_active:
+    score: 10 * current_player.multiplier
+  s_leftmiddlewall_active:
+    score: 10 * current_player.multiplier
+  s_topadvbonustarget_active:
+    bonus: 1 if current_player.bonus<=18 else 0
+    score: 1000 * current_player.multiplier  
+  s_topouthole_active:
+    # Now using the chime_500pts_show
+    #score: 1000 if current_player.eject1000_lamp_on==1 else 500
+    bonus: 1 if current_player.bonus<=18 else 0
+    my_capball_awarded: 1 if current_player.captive_lamp_on==1 else 0
+    my_dblbonus_awarded: 1 if current_player.double_lamp_on==1 else 0  
+  s_capballswitch_active:
+    score: 100 * current_player.multiplier
+    bonus: 1 if current_player.bonus<=18 else 0
+  s_capballtarget_active:
+    # Should play chime_3000pts_show if lite need to figure conditional scoring eveents
+    score: 3000 if current_player.my_capball_awarded>0 else 1000
+  s_right_inlane_active:
+    score: 1000 * current_player.multiplier
+    bonus: 1 if current_player.bonus<=18 else 0
+  s_right_outlane_active:
+    score: 1000 * current_player.multiplier
+    bonus: 1 if current_player.bonus<=18 else 0
+    my_extraball_awarded: 1 if current_player.my_multiplier>=4 else 0
+  s_left_inlane_active:
+    score: 1000 * current_player.multiplier
+    bonus: 1 if current_player.bonus<=18 else 0
+  s_left_outlane_active:
+    score: 1000 * current_player.multiplier
+    bonus: 1 if current_player.bonus<=18 else 0
+    my_extraball_awarded: 1 if current_player.my_multiplier==4 else 0   
+  s_spinner_active:
+    score: current_player.spinner_value * current_player.multiplier
+  s_leftouthole_active:
+    # Now using chime_500pts_show to adv score for outhole
+    #score: 500
+    bonus: 1 if current_player.bonus<=18 else 0
+    my_extraball_awarded: 1 if current_player.extraball_lamp_on>0 else 0 
+  s_ltarget_active:
+    score: 1000 * current_player.multiplier
+    bonus: 1 if current_player.bonus<=18 else 0
+  s_rtarget_active:
+    score: 1000 * current_player.multiplier
+    bonus: 1 if current_player.bonus<=18 else 0
+  s_cjet_active:
+    score: 10 * current_player.multiplier
+  s_lslingshot_active:
+    score: 10 * current_player.multiplier
+  s_rslingshot_active:
+    score: 10 * current_player.multiplier
+  s_rbdrop1_active:
+    score: current_player.drop_value * current_player.multiplier
+  s_rbdrop2_active:
+    score: current_player.drop_value * current_player.multiplier
+  s_rbdrop3_active:
+    score: current_player.drop_value * current_player.multiplier
+  s_lbdrop1_active:
+    score: current_player.drop_value * current_player.multiplier
+  s_lbdrop2_active:
+    score: current_player.drop_value * current_player.multiplier
+  s_lbdrop3_active:
+    score: current_player.drop_value * current_player.multiplier
+  s_rbstandup_active:
+    score: 10
+  s_lstandup_active:
+    score: 10
+    
+slides:
+  slide_replay:
+  - type: text
+    text: R E P L A Y
+  slide_1:
+  - type: text
+    text: (player1|score)
+    number_grouping: true
+    min_digits: 2
+    y: middle+2
+      #persist_slide: yes
+    style: tall_title
+  - type: text
+#    text: BALL (player1|ball)    (machine|credits_string)
+    text: PLAYER1 BALL (player1|ball) (machine|credits_string)
+    anchor_y: bottom
+    style: small
+    y: bottom+1
+
+  slide_2:
+  - type: text
+    text: (player1|score)
+      #font: medium
+    number_grouping: true
+    min_digits: 2
+    anchor_y: top
+    anchor_x: right
+    x: right-60
+    y: top-2
+  - type: text
+    text: (player2|score)
+    style: medium
+    anchor_y: top
+    anchor_x: right
+    number_grouping: true
+    min_digits: 2
+    x: right-2
+    y: top-2
+  - type: text
+    text: (player3|score)
+    style: medium
+    anchor_y: bottom
+    anchor_x: right
+    y: bottom+10
+    x: right-60
+    number_grouping: true
+    min_digits: 2
+  - type: text
+    text: (player4|score)
+    style: medium
+    anchor_y: bottom
+    anchor_x: right
+    y: bottom+10
+    x: right-2
+    number_grouping: true
+    min_digits: 2
+  - type: text
+    text: PLAYER1 BALL (player1|ball) (machine|credits_value)
+    anchor_y: bottom
+    style: small
+    y: bottom+1
+
+  slide_3:
+  - type: text
+    text: (player1|score)
+    style: medium
+    number_grouping: true
+    min_digits: 2
+    anchor_y: top
+    anchor_x: right
+    x: right-60
+    y: top-2
+  - type: text
+    text: (player2|score)
+#      font: medium
+    anchor_y: top
+    anchor_x: right
+    number_grouping: true
+    min_digits: 2
+    x: right-2
+    y: top-2
+  - type: text
+    text: (player3|score)
+    style: medium
+    anchor_y: bottom
+    anchor_x: right
+    y: bottom+10
+    x: right-60
+    number_grouping: true
+    min_digits: 2
+  - type: text
+    text: (player4|score)
+    style: medium
+    anchor_y: bottom
+    anchor_x: right
+    y: bottom+10
+    x: right-2
+    number_grouping: true
+    min_digits: 2
+  - type: text
+    text: PLAYER2 BALL (player2|ball) (machine|credits_string)
+    anchor_y: bottom
+    style: small
+    y: bottom+1
+
+  slide_4:
+  - type: text
+    text: (player1|score)
+    style: medium
+    number_grouping: true
+    min_digits: 2
+    anchor_y: top
+    anchor_x: right
+    x: right-60
+    y: top-2
+  - type: text
+    text: (player2|score)
+    style: medium
+    anchor_y: top
+    anchor_x: right
+    number_grouping: true
+    min_digits: 2
+    x: right-2
+    y: top-2
+  - type: text
+    text: (player3|score)
+#      font: medium
+    anchor_y: bottom
+    anchor_x: right
+    y: bottom+10
+    x: right-60
+    number_grouping: true
+    min_digits: 2
+  - type: text
+    text: (player4|score)
+    style: medium
+    anchor_y: bottom
+    anchor_x: right
+    y: bottom+10
+    x: right-2
+    number_grouping: true
+    min_digits: 2
+  - type: text
+    text: PLAYER3 BALL (player3|ball) (machine|credits_string)
+    anchor_y: bottom
+    style: small
+    y: bottom+1
+
+  slide_5:
+  - type: text
+    text: (player1|score)
+    style: medium
+    number_grouping: true
+    min_digits: 2
+    anchor_y: top
+    anchor_x: right
+    x: right-60
+    y: top-2
+  - type: text
+    text: (player2|score)
+    style: medium
+    anchor_y: top
+    anchor_x: right
+    number_grouping: true
+    min_digits: 2
+    x: right-2
+    y: top-2
+  - type: text
+    text: (player3|score)
+    style: medium
+    anchor_y: bottom
+    anchor_x: right
+    y: bottom+10
+    x: right-60
+    number_grouping: true
+    min_digits: 2
+  - type: text
+    text: (player4|score)
+#      font: medium
+    anchor_y: bottom
+    anchor_x: right
+    y: bottom+10
+    x: right-2
+    number_grouping: true
+    min_digits: 2
+  - type: text
+    text: PLAYER4 BALL (player4|ball) (machine|credits_string)
+    anchor_y: bottom
+    style: small
+    y: bottom+1
+
+
